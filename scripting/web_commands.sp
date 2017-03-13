@@ -12,7 +12,7 @@
 
 #include <stocksoup/maps>
 
-#define PLUGIN_VERSION "0.0.2"
+#define PLUGIN_VERSION "0.0.3"
 public Plugin myinfo = {
 	name = "Web Commands",
 	author = "nosoop",
@@ -85,7 +85,7 @@ public Action OpenProfilePage(int client, int argc) {
 				GetSteamAccountID(target));
 		
 		AdvMOTD_ShowMOTDPanel(client, "Profile Window", url, MOTDPANEL_TYPE_URL,
-				_, true, _, INVALID_FUNCTION);
+				_, true, true, OnPageOpenFailure);
 	}
 	
 	return Plugin_Handled;
@@ -98,10 +98,10 @@ public void OnPageOpenFailure(int client, MOTDFailureReason reason) {
 	if (IsClientInGame(client)) {
 		switch (reason) {
 			case MOTDFailure_Disabled: {
-				PrintToChat(client, "Can't open group info:  You have HTML MOTDs disabled.");
+				PrintToChat(client, "Can't open web panel:  You have HTML MOTDs disabled.");
 			}
 			case MOTDFailure_Matchmaking: {
-				PrintToChat(client, "Can't open group info:  "
+				PrintToChat(client, "Can't open web panel:  "
 						... "HTML MOTDs are disabled for Quickplay users.");
 			}
 		}
