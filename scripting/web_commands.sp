@@ -12,7 +12,7 @@
 
 #include <stocksoup/maps>
 
-#define PLUGIN_VERSION "0.0.1"
+#define PLUGIN_VERSION "0.0.2"
 public Plugin myinfo = {
 	name = "Web Commands",
 	author = "nosoop",
@@ -22,6 +22,8 @@ public Plugin myinfo = {
 }
 
 public void OnPluginStart() {
+	LoadTranslations("common.phrases");
+	
 	RegConsoleCmd("sm_workshop", OpenWorkshopPage,
 			"Opens the current map's workshop page in a large MOTD window.");
 	RegConsoleCmd("sm_group", OpenServerGroupPage,
